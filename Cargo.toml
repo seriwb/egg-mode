@@ -1,6 +1,6 @@
 [package]
 name = "egg-mode"
-version = "0.16.0"
+version = "0.16.1"
 authors = ["QuietMisdreavus <victoria@quietmisdreavus.net>", "Alex Whitney <adwhit@fastmail.com>"]
 description = "Library to interact with the Twitter API"
 documentation = "https://docs.rs/egg-mode"
@@ -9,7 +9,7 @@ keywords = ["twitter"]
 categories = ["api-bindings"]
 license = "MPL-2.0"
 readme = "README.md"
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 base64 = "0.13"

@@ -71,6 +71,7 @@ use chrono;
 use serde::Deserialize;
 
 use crate::common::*;
+use crate::user::TwitterUser;
 use crate::{auth, links, user};
 
 mod fun;
@@ -230,6 +231,20 @@ impl ListUpdate {
         let req = post(links::lists::UPDATE, token, Some(&params));
         request_with_json_response(req).await
     }
+}
+
+#[derive(Clone, Debug, Deserialize)]
+pub struct PinnedList {
+    pub id: String,
+    pub name: String,
+    #[serde(with = "serde_datetime")]
+    pub created_at: chrono::DateTime<chrono::Utc>,
+    pub private: bool,
+    pub follower_count: u64,
+    pub member_count: u64,
+    pub owner_id: String,
+    pub description: String,
+    pub includes_users: Option<Vec<TwitterUser>>,
 }
 
 #[cfg(test)]

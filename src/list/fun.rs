@@ -361,3 +361,17 @@ pub fn update(list: ListID) -> ListUpdate {
         desc: None,
     }
 }
+
+// https://developer.twitter.com/en/docs/twitter-api/lists/pinned-lists/api-reference/get-users-id-pinned_lists
+pub async fn pinned_lists(
+    user_id: String,
+    token: &auth::Token,
+) -> Result<Response<PinnedList>> {
+    let endpoint = format!("https://api.twitter.com/2/users/{user_id}/pinned_lists");
+    let params = ParamList::new();
+    let req = get(&endpoint, token, Some(&params));
+    println!("{:?}", req);  // TODO: requestがBearerトークンじゃないからだめっぽい
+    let res = request_with_json_response::<PinnedList>(req).await;
+    println!("{:?}", res);  // Err(BadStatus(403))
+    res
+}
